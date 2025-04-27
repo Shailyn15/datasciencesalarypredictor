@@ -12,8 +12,28 @@ st.title("Data Science Salary Predictor")
 # Description
 st.write("This web application predicts data scientist salaries based on your background. Please fill in the details below:")
 
-# Input fields
-Country = st.slider("1. Country Code (e.g., 0 = US, 1 = India, 2 = UK, etc.)", min_value=0, max_value=10, step=1)
+# Define country mapping
+country_mapping = {
+    "United States": 0,
+    "India": 1,
+    "United Kingdom": 2,
+    "Canada": 3,
+    "Spain": 4,
+    "Germany": 5,
+    "France": 6,
+    "Australia": 7,
+    "China": 8,
+    "Brazil": 9,
+    "Other": 10
+}
+
+# User selects country from dropdown
+selected_country = st.selectbox("🌍 Country of Residence", list(country_mapping.keys()))
+
+# Map selection to numeric code
+Country = country_mapping[selected_country]
+
+# Other input fields
 ML_Spend = st.slider("2. How much money have you spent on ML/cloud computing services? [0 = $0, 1 = $1-99, 2 = $100-999, 3 = $1000-9999, 4 = $10,000-99,999, 5 = $100,000+]", min_value=0, max_value=5, step=1)
 Years_ML_Experience = st.slider("3. Years of machine learning experience? [0 = 0 years, 1 = <1 year, 2 = 1-2 years, 3 = 3-5 years, 4 = 5-10 years, 5 = 10+ years]", min_value=0, max_value=5, step=1)
 Company_Size = st.slider("4. Company size [0 = 0-49 employees, 1 = 50-249, 2 = 250-999, 3 = 1000-4999, 4 = 5000+]", min_value=0, max_value=4, step=1)
