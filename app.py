@@ -33,8 +33,6 @@ print("Model trained and saved as updated_model.pkl")
 # with open('updated_model.pkl', 'rb') as f:
 #    loaded_model = pickle.load(f)
 
-!pip install streamlit
-
 import streamlit as st
 import pickle
 import pandas as pd
