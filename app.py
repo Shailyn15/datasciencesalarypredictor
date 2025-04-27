@@ -3,7 +3,7 @@ import pickle
 import pandas as pd
 
 # Load the trained model
-with open("updated_model.pkl", "rb") as file:
+with open("final_trained_model.pkl", "rb") as file:
     model = pickle.load(file)
 
 # Title for the app
