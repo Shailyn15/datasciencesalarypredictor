@@ -6,9 +6,6 @@ import pandas as pd
 with open("final_trained_model.pkl", "rb") as file:
     model = pickle.load(file)
 
-# OPTIONAL: Print the model's expected features
-st.write("Expected columns:", model.feature_names_in_)
-
 # Title
 st.title("Data Science Salary Predictor")
 
@@ -36,7 +33,7 @@ Country = country_mapping[selected_country]
 
 # Other inputs
 ML_Spend = st.slider("💸 Money Spent on ML/Cloud Services (Past 5 Years)", 0, 5, 2)
-Years_of_ML_Experience = st.slider("🧠 Years of Machine Learning Experience", 0, 5, 2)  # <-- updated name
+Years_of_ML_Experience = st.slider("🧠 Years of Machine Learning Experience", 0, 5, 2)
 Company_Size = st.slider("🏢 Company Size", 0, 4, 2)
 Age = st.slider("🎂 Your Age", 18, 70, 30)
 Education_Level = st.slider("🎓 Highest Education Level", 0, 3, 1)
@@ -47,18 +44,14 @@ if st.button("💵 Predict Salary"):
     features = {
         'Country': Country,
         'ML_Spend': ML_Spend,
-        'Years_of_ML_Experience': Years_of_ML_Experience,  # <-- updated key
+        'Years_of_ML_Experience': Years_of_ML_Experience,
         'Company_Size': Company_Size,
         'Age': Age,
         'Education_Level': Education_Level
     }
     
-    # Create DataFrame
+    # Create DataFrame (no need to reorder)
     input_data = pd.DataFrame([features])
-
-    # Reorder columns exactly to match what the model expects
-    expected_columns = list(model.feature_names_in_)
-    input_data = input_data[expected_columns]
 
     # Predict
     predicted_salary = model.predict(input_data)[0]
